@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Paint</title>
+    <title>DibuJSar</title>
 
     <script type="module" src="scripts/index.js"></script>
   </head>
@@ -13,8 +13,16 @@
       <h1>DibuJSar</h1>
     </header>
     <main>
-      <canvas id="canvas" width="500" height="500"></canvas>
-      <input type="color" id="color-picker" />
+      <section class="tools-container">
+        <button title="dibujar" id="draw-btn" class="active btn"></button>
+        <button title="borrar" id="erase-btn" class="btn"></button>
+        <button title="elipse" id="elipse-btn" class="btn"></button>
+        <button title="seleccionar color" id="dropper-btn" class="btn"></button>
+        <button title="rectángulo" id="rectangle-btn" class="btn"></button>
+        <button title="limpiar todo" id="trash-btn" class="btn"></button>
+        <input type="color" id="color-picker" title="seleccionar color" />
+      </section>
+      <canvas id="canvas" width="900" height="800"></canvas>
     </main>
   </body>
 </html>

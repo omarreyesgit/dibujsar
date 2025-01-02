@@ -24,8 +24,54 @@ canvas {
 h1 {
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.1),
+    rgba(182, 20, 20, 0.1),
     rgba(255, 255, 255, 0.1)
   );
   -web-kit-text-fill-color: transparent;
+}
+
+main {
+  display: grid;
+  place-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tools-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  width: 35px;
+  height: 35px;
+  background: #fff url('./img/pencil.svg') no-repeat center;
+  background-size: 27px;
+}
+
+#erase-btn {
+  background-image: url('./img/erase.svg');
+}
+#elipse-btn {
+  background-image: url('./img/oval.svg');
+}
+
+#rectangle-btn {
+  background-image: url('./img/rectangle.svg');
+}
+
+#dropper-btn {
+  background-image: url('./img/dropper.svg');
+}
+
+#trash-btn {
+  background-image: url('./img/trash.svg');
+}
+
+.active {
+  border: 1px solid #f00;
 }
