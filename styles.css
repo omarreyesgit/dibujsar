@@ -51,6 +51,9 @@ main {
   height: 35px;
   background: #fff url('./img/pencil.svg') no-repeat center;
   background-size: 27px;
+  border-radius: 15%;
+  border: transparent;
+  cursor: pointer;
 }
 
 #erase-btn {
@@ -66,12 +69,17 @@ main {
 
 #dropper-btn {
   background-image: url('./img/dropper.svg');
+  display: none;
 }
 
 #trash-btn {
   background-image: url('./img/trash.svg');
 }
+#save-btn {
+  background-image: url('./img/save.svg');
+}
 
 .active {
-  border: 1px solid #f00;
+  border: 2px solid rgb(12, 12, 12);
+  background-color: rgb(163, 167, 167);
 }
