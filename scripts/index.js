@@ -11,6 +11,7 @@ const $eraseBtn = $('#erase-btn')
 const $lineWidth = $('#line-width')
 const $pickerBtn = $('#dropper-btn')
 const $saveBtn = $('#save-btn')
+const $elipseBtn = $('#elipse-btn')
 
 //constants
 const MODES = {
@@ -48,6 +49,10 @@ $drawBtn.addEventListener('click', () => {
 })
 $rectangleBtn.addEventListener('click', () => {
   setMode(MODES.RECTANGLE)
+})
+
+$elipseBtn.addEventListener('click', () => {
+  setMode(MODES.ELLIPSE)
 })
 
 $lineWidth.addEventListener('change', handleChangeLineWidth)
@@ -100,10 +105,25 @@ function draw(e) {
     return
   }
 
-  if (mode === MODES.ERASE) {
-    console.log('rase')
-
-    //context.clearRect(offsetX, offsetY, 10, 10)
+  if (mode === MODES.ELLIPSE) {
+    context.putImageData(canvasSnapShot, 0, 0)
+    const radiusX = (offsetX - startX) / 2
+    const radiusY = (offsetY - startY) / 2
+    const centerX = startX + radiusX
+    const centerY = startY + radiusY
+    context.beginPath()
+    context.ellipse(
+      centerX,
+      centerY,
+      Math.abs(radiusX),
+      Math.abs(radiusY),
+      0,
+      0,
+      2 * Math.PI
+    )
+    context.stroke()
+    context.closePath()
+    return
   }
 }
 
@@ -142,7 +162,7 @@ async function setMode(newMode) {
 
     case MODES.ERASE:
       $eraseBtn.classList.add('active')
-      $canvas.style.cursor = 'url(./img/erase.svg) 0 32, auto'
+      $canvas.style.cursor = 'url(./img/circle.svg) 16 16, auto'
       context.globalCompositeOperation = 'destination-out'
       break
 
@@ -156,6 +176,11 @@ async function setMode(newMode) {
         console.log('🚀 ~ setMode ~ color:', sRGBHex)
         setMode(prevMode)
       } catch (error) {}
+      break
+
+    case MODES.ELLIPSE:
+      $elipseBtn.classList.add('active')
+      $canvas.style.cursor = 'crosshair'
       break
     default:
       break
