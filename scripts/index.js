@@ -229,4 +229,39 @@ function savePicture(event) {
   )
 }
 
+//-----------------
+canvas.addEventListener('touchstart', handleStart)
+$canvas.addEventListener('touchmove', handleMove)
+$canvas.addEventListener('touchend', handleEnd)
+
+// Funciones para manejar eventos touch
+function handleStart(e) {
+  e.preventDefault()
+  const touch = e.touches[0]
+  const rect = canvas.getBoundingClientRect()
+  const x = touch.clientX - rect.left
+  const y = touch.clientY - rect.top
+
+  isDrawing = true
+  ;[startX, startY] = [x, y]
+  ;[lastX, lastY] = [x, y]
+  canvasSnapShot = context.getImageData(0, 0, canvas.width, canvas.height)
+}
+
+function handleMove(e) {
+  e.preventDefault()
+  const touch = e.touches[0]
+  const rect = canvas.getBoundingClientRect()
+  const x = touch.clientX - rect.left
+  const y = touch.clientY - rect.top
+
+  draw({ offsetX: x, offsetY: y })
+}
+
+function handleEnd(e) {
+  e.preventDefault()
+  isDrawing = false
+}
+//-----------------
+
 setMode(MODES.DRAW)
